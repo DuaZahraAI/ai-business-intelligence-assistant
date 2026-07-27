@@ -1,2 +1,7 @@
-# ai-business-intelligence-assistant
-AI-powered Business Intelligence Assistant that analyzes Excel and CSV data using Python, Pandas, FastAPI, and LLMs to generate business insights, charts, and natural-language reports.
+# AI Business Intelligence Assistant
+
+An AI-powered application that helps businesses analyze Excel and CSV datasets using Python, Pandas, FastAPI, and large language models.
+
+## Status
+
+🚧 Currently under active development as part of an end-to-end AI engineering project.
