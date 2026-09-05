@@ -1,6 +1,5 @@
 import pandas as pd
 
-
 def analyze_data(df: pd.DataFrame) -> dict:
     """
     Analyze the cleaned dataset and return business insights.
@@ -15,4 +14,15 @@ def analyze_data(df: pd.DataFrame) -> dict:
         "statistics": df.describe(include="all").to_dict()
     }
 
+    facts = {}
+
+    if "profit" in df.columns:
+        facts["average_profit"] = df["profit"].mean()
+
+    if "revenue" in df.columns:
+        facts["total_revenue"] = df["revenue"].sum()
+
+    analysis["facts"] = facts
+
     return analysis
+
