@@ -5,6 +5,7 @@ from src.data.loader import load_data
 from src.data.cleaner import clean_data
 from src.analysis.analyzer import analyze_data
 from src.analysis.query_processor import process_query
+from src.generation.prompt_builder import build_prompt
 
 
 def process_dataset(file_path: Path) -> dict:
@@ -38,4 +39,15 @@ def answer_question(
 
     result = process_query(question, facts)
 
-    return result
+    if result["status"] != "success":
+        return result
+
+    prompt = build_prompt(result)
+
+    return {
+        "status": "success",
+        "question": question,
+        "intent": result["intent"],
+        "fact": result["fact"],
+        "prompt": prompt
+    }
