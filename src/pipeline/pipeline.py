@@ -6,6 +6,7 @@ from src.data.cleaner import clean_data
 from src.analysis.analyzer import analyze_data
 from src.analysis.query_processor import process_query
 from src.generation.prompt_builder import build_prompt
+from src.generation.llm_generator import generate_response
 
 
 def process_dataset(file_path: Path) -> dict:
@@ -26,7 +27,8 @@ def process_dataset(file_path: Path) -> dict:
 
 def answer_question(
     file_path: Path,
-    question: str
+    question: str,
+    generator
 ) -> dict:
     """
     Process a dataset and answer a user question
@@ -44,10 +46,13 @@ def answer_question(
 
     prompt = build_prompt(result)
 
+    response = generate_response(prompt, generator)
+
     return {
         "status": "success",
         "question": question,
         "intent": result["intent"],
         "fact": result["fact"],
-        "prompt": prompt
+        "prompt": prompt,
+        "response": response
     }
